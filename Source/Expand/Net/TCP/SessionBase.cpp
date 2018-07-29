@@ -1,13 +1,16 @@
 #include "SessionBase.h"
 //====================================
 #include "../Buffer.h"
+#include "../NetBase.h"
 #include "../../Error.hpp"
 //====================================
 using namespace Expand::Net;
 using namespace Expand::Net::TCP;
 
-SessionBase::SessionBase(boost::asio::ip::tcp::socket&& socket)
-	: m_socket(std::move(socket))
+SessionBase::SessionBase(NetBase& owner, boost::asio::ip::tcp::socket&& socket)
+	: m_owner(owner)
+	, m_socket(std::move(socket))
+	, m_LastRecvedTick(0)
 {
 
 }
@@ -29,8 +32,8 @@ void SessionBase::PrepareRecv(std::shared_ptr<BufferBase>& pBuffer)
 		}
 		else
 		{
-			// disconnect
-			OnDisconnect();
+			m_owner.OnSessionDisconnected();
+			OnDisconnected();
 		}
 	});
 }

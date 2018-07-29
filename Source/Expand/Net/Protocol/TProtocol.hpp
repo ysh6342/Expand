@@ -3,9 +3,15 @@
 #include "TProtocolToType.hpp"
 #include "../Serialize.hpp"
 #include "IPacket.h"
+#include "../../Automation.hpp"
 
 #define BIND_PACKET_MEMBERS(...) \
 BIND_MEM_FUNC_TIE(get_packet_members, __VA_ARGS__)
+
+struct MSG_HEART_BEAT_CMD
+{
+	BIND_PACKET_MEMBERS();
+};
 
 namespace Expand
 {
@@ -38,6 +44,7 @@ namespace Expand
 			public:
 				using Type = T;
 				static constexpr short value = static_cast<std::uint8_t>(Category) << 8 & static_cast<std::uint8_t>(Value);
+				static_assert(!std::is_same_v<T, MSG_HEART_BEAT_CMD> && value == 0);
 			public:
 				T Data;
 
@@ -144,3 +151,5 @@ namespace Expand
 		}
 	};
 };
+
+using PACKET_HEART_BEAT_CMD = Expand::Net::Protocol::TProtocol<MSG_HEART_BEAT_CMD, 0, 0>;

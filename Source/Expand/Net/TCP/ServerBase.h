@@ -15,9 +15,6 @@ namespace Expand
 				std::unique_ptr<boost::asio::ip::tcp::acceptor> m_acceptor;
 				
 				using NetBase::NetBase;	
-
-			private:
-				void StartHeartbeat();
 			};
 		}
 	}

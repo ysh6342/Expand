@@ -8,12 +8,8 @@ class UserSession
 	using Base = Expand::Net::TCP::TSession<UserSession>;
 public:
 	using Base::Base;
-
-	virtual void OnLink() override
-	{
-		int i = 0;
-	}
 };
+
 class UserLine
 	: public Expand::Net::TCP::TServer<SessionType::User, UserSession>
 {

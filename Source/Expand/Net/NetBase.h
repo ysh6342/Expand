@@ -20,6 +20,8 @@ namespace Expand
 
 		public:
 			boost::asio::io_context& get_io_context() { return m_io_context; }
+
+			virtual void OnSessionDisconnected() {}
 		};
 	}
 }

@@ -37,7 +37,14 @@ namespace Expand
 					}
 					else
 					{
-						Error::OnError(_T("[%s] not found handler : %d"), __FUNCTIONT__, packet.GetType());
+						if (packet.GetType() == 0)
+						{
+							UpdateLastRecvedTick();
+						}
+						else
+						{
+							Error::OnError(_T("[%s] not found handler : %d"), __FUNCTIONT__, packet.GetType());
+						}
 					}
 				}
 			};
