@@ -149,9 +149,6 @@
     <ClInclude Include="..\..\Source\Expand\Net\Protocol\TProtocolRegistor.hpp">
       <Filter>Expand\Net\Protocol</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Expand\Net\Protocol\TProtocolToType.hpp">
-      <Filter>Expand\Net\Protocol</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\Expand\TypeTraitsEx.hpp">
       <Filter>Expand</Filter>
     </ClInclude>

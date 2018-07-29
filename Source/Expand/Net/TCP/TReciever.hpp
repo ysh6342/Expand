@@ -4,6 +4,7 @@
 #include "../Protocol/TProtocolHandler.hpp"
 #include "../Protocol/TProtocolDispatcher.hpp"
 #include "../Packet.h"
+#include "../../TSingleton.hpp"
 //#include "TServer.hpp"
 
 namespace Expand
@@ -19,15 +20,14 @@ namespace Expand
 			{
 			public:
 				using Handler = Expand::Net::Protocol::TBaseProtocolHandler<T&>;
-				using Dispatcher = Expand::Net::Protocol::TProtocolDispatcher<Handler>;
-
+				using DispatcherMgr = Expand::TSingleton_Static<Expand::Net::Protocol::TProtocolDispatcher<Handler>>;
 			protected:
 				using SessionBase::SessionBase;
 
 			public:
 				virtual void OnMsg(Expand::Net::Protocol::IPacket& packet) override
 				{
-					auto handler = Expand::TSingleton_Static<Dispatcher>::GetInstance().GetHandler(packet.GetType());
+					auto handler = DispatcherMgr::GetInstance().GetHandler(packet.GetType());
 					if (handler)
 					{
 						if (!handler->OnExecute(packet, static_cast<T&>(*this)))

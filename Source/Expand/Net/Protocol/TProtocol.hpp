@@ -31,14 +31,17 @@ namespace Expand
 				virtual bool Deserialize(IPacket& packet) = 0;
 			};
 
-			template <class T>
+			template <class T, auto Category, auto Value>
 			class TProtocol 
 				: public IProtocol
 			{
 			public:
+				using Type = T;
+				static constexpr short value = static_cast<std::uint8_t>(Category) << 8 & static_cast<std::uint8_t>(Value);
+			public:
 				T Data;
 
-				virtual short GetType() const { return TProtocolToType<T>::GetProtocolType(); }
+				virtual short GetType() const { return value; }
 
 				virtual short GetCType() const override { return HIBYTE(GetType()); }
 				virtual short GetPType() const override { return LOBYTE(GetType()); }

@@ -26,13 +26,13 @@ namespace Expand
 				{
 				}
 
-				template <class T, class V>
+				template <class T>
 				bool Regist()
 				{
-					MapFactory::iterator itFind = m_mapFactory.find(TProtocolToType<T>::GetProtocolType());
+					MapFactory::iterator itFind = m_mapFactory.find(T::Type::value);
 					if (itFind == m_mapFactory.end())
 					{
-						return m_mapFactory.try_emplace(TProtocolToType<T>::GetProtocolType(), new V()).second;
+						return m_mapFactory.try_emplace(T::Type::value, new T()).second;
 					}
 
 					return false;

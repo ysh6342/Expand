@@ -26,3 +26,9 @@ enum class SessionType
 };
 
 BIND_ENUM_CLASS_CONVERT(SessionType, User);
+
+
+enum class CategoryType : std::uint8_t
+{
+	Test,
+};

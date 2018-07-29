@@ -3,7 +3,7 @@
 #include <tuple>
 #include <boost/thread/tss.hpp>
 
-#include "Error.h"
+#include "../../Error.hpp"
 #include "TConnection.hpp"
 #include "TMultiConnection.hpp"
 

@@ -25,13 +25,15 @@ namespace Expand
 			class TProtocolHandler
 				: public TBaseProtocolHandler<Args...>
 			{
+				using Type = typename T;
+				using ValueType = typename Type::Type;
 			public:
 				TProtocolHandler() {}
 				virtual ~TProtocolHandler() {}
 
 				virtual bool OnExecute(IPacket& rPacket, Args... args) override sealed
 				{
-					Expand::Net::Protocol::TProtocol<T> protocol;
+					T protocol;
 					if (!protocol.Deserialize(rPacket))
 						return false;
 
@@ -44,7 +46,7 @@ namespace Expand
 // 				}
 
 			protected:
-				virtual void _OnComplete(const T& rMsg, Args... args);
+				virtual void _OnComplete(const ValueType& rMsg, Args... args);
 			};
 		};
 	}

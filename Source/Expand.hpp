@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "Expand/Net.hpp"
-#include "Expand/Database.hpp"
+//#include "Expand/Database.hpp"
 #include "Expand/Automation.hpp"
 #include "Expand/meta.hpp"
 #include "Expand/TSingleton.hpp"
