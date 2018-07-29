@@ -3,3 +3,7 @@
 ################################################################################
 
 /bin/x64/Debug
+/build
+/lib/x64/Debug
+/Projects/.vs/Projects/v15
+/Projects/packages
